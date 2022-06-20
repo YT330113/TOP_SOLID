@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "\"C_Cpp.default.includePath\"": "[                         \"${workspaceFolder}/**\",         \"${FOAM_SRC}/**\"]",
+        "*Dict": "OpenFOAM",
+        "*Properties": "OpenFOAM",
+        "fvSchemes": "OpenFOAM",
+        "fvSolution": "OpenFOAM",
+        "**/constant/g": "OpenFOAM",
+        "**/0/*": "OpenFOAM",
+        "TOP_SOLID.C": "cpp",
+        "cpuTime.C": "cpp",
+        "iostream": "cpp",
+        "IOobject.C": "cpp",
+        "scalar": "cpp",
+        "*.tcc": "cpp",
+        "clock.C": "cpp",
+        "linearEqnI.H": "cpp"
+    },
+
+    "C_Cpp.default.includePath": [                
+        "${workspaceFolder}/**",
+        "${FOAM_SRC}/**"
+    ],
+    "C_Cpp.errorSquiggles": "Enabled",
+    "editor.formatOnType": true
+}

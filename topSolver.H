@@ -1,48 +1,18 @@
 /*************************************************************************************************/
 /***************************************拓扑变量求解及过滤**************************************/
 /*************************************************************************************************/
-#include "MMASolver.h"
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cmath>
+
 
 /********************************MMA求解器拓扑变量求解***********************************/
 
+std::cout << "\nRun MMA algorithm\n"<< std::endl;
 
-// Math helpers
-double Min(double d1, double d2);
-double Max(double d1, double d2);
-int Min(int d1, int d2);
-int Max(int d1, int d2);
-double Abs(double d1);
-
-
-	std::cout<<"\nRun MMA algorithm\n"<<std::endl;
-
-
-	int n = n_dof;
-	int m = m_con;
-
-	double Xmin = 0.0;
-	double Xmax = 1.0;
-	double movlim = 0.2;
-
-	double *xmma = new double[n];
-	double *xold = new double[n];
-	double *f = new double[1];
-	double *df = new double[n];
-	double *g = new double[m];
-	double *dg = new double[n*m];
-	double *xmin = new double[n];
-	double *xmax = new double[n];
-  
-
-  	// Initialize MMA
-	MMASolver *mma = new MMASolver(n,m);
-	
-	// 这里是灵明度ObjSens(af,bf,x,n,m,f,df,g,dg);
+g[0] = V; // constraint function
+for (i = 0; i < n; i++)
+{
+	df[i] = fsens[i] / n; // sensitivities of objective function
+	dg[i] = gsens[i] / n; // sensitivities of constraint function
+	}  
 
 	// Set outer move limits
 	for (int i=0;i<n;i++) {
@@ -62,9 +32,7 @@ double Abs(double d1);
 	}
 
 	// Print to screen
-	printf("设计变量的最大变化量:%f \n", ch);	
-
-
+	std::cout << "\n设计变量的最大变化量:  "<< ch << std::endl;
 //-------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -72,11 +40,14 @@ double Abs(double d1);
 
 /***********************************PDE filter**********************************************/
 
+Info<<"\nPDE过滤\n"<<endl;
 solve(fvm::laplacian(xp) - fvm::Sp(b, xp) + x * b);
 //-------------------------------------------------------------------------------------------------------------------------//
 
 //***********************************Heaviside_filter***************************************//
-del = Foam::min(Hdel * opt, 100);
+
+Info<<"\nHeaviside过滤\n"<<endl;
+del = Foam::min(0.2 * opt, 100);
 eta0 = 0.0001;
 eta1 = 1.0;
 y0 = diff(xp, mesh.V(), del, eta0, n);
@@ -113,22 +84,4 @@ for(i=0;i<n;i++)
 
 
 
-double Min(double d1, double d2) {
-	return d1<d2 ? d1 : d2;
-}
 
-double Max(double d1, double d2) {
-	return d1>d2 ? d1 : d2;
-}
-
-int Min(int d1, int d2) {
-	return d1<d2 ? d1 : d2;
-}
-
-int Max(int d1, int d2) {
-	return d1>d2 ? d1 : d2;
-}
-
-double Abs(double d1) {
-	return d1>0 ? d1 : -1.0*d1;
-}

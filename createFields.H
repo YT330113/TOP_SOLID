@@ -19,6 +19,7 @@ IOdictionary optProperties                      //创建字典，用于输入输
 );
 scalar voluse(readScalar(optProperties.lookup("voluse")));      // 体积约束
 Switch solid_area(optProperties.lookup("solid_area"));              //bool型变量，判断是否存在不可设计域
+scalar filterR(readScalar(optProperties.lookup("filterR")));
 dimensionedScalar b("b", dimensionSet(0, -2, 0, 0, 0, 0, 0), 1);// b就是PDE求导数中的1/( r^2 ),后续会定义具体值  
 
 //-------------------------------------------------------------------------------//
@@ -80,7 +81,7 @@ if (solid_area)
 
   forAll(cells, i)
   {
-     const x[cells[i]]=1.0;                                           //对非设计域单元将设计变量置1
+     x[cells[i]]=1.0;                                           //对非设计域单元将设计变量置1
   }
 }
 //---------------------------------------------------------------------------------------------//

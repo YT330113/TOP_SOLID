@@ -4,13 +4,15 @@
 
 opt++; // 迭代次数增加
 
+Info<<"\nIter:  \n"<<opt<<endl;
+
 /************************计算结果输出*****************************/
 
 if(solid_area)
 {
     forAll(cells, i)
     {
-        const xh[cells[i]] = 1.0; //对非设计域单元将设计变量置1,注意这里是对xh的，creatfields.H是对x的
+        xh[cells[i]] = 1.0; //对非设计域单元将设计变量置1,注意这里是对xh的，creatfields.H是对x的
     }
 }
 xh.correctBoundaryConditions();

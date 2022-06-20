@@ -14,7 +14,11 @@
         "scalar": "cpp",
         "*.tcc": "cpp",
         "clock.C": "cpp",
-        "linearEqnI.H": "cpp"
+        "linearEqnI.H": "cpp",
+        "optional": "cpp",
+        "functional": "cpp",
+        "iosfwd": "cpp",
+        "stdexcept": "cpp"
     },
 
     "C_Cpp.default.includePath": [                

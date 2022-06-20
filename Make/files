@@ -1,3 +1,7 @@
 TOP_SOLID.C
 
+tractionDisplacement/tractionDisplacementFvPatchVectorField.C
+
+MMASolver.cpp
+
 EXE = $(FOAM_USER_APPBIN)/TOP_SOLID

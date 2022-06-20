@@ -103,17 +103,19 @@ mesh.setFluxRequired(D.name());         //？？？
 
 /***********************************定义灵敏度场********************************/
 
-volScalarField fsens //目标函数灵敏度，对x的导数
+volScalarField fsens //目标函数灵敏度，对x的导数,用于MMA求解
     (
         IOobject(
             "fsens",
             runTime.timeName(),
             mesh,
             IOobject::NO_READ,
-            IOobject::AUTO_WRITE),
-        xh,////////////////////////////////////////////////////////////////////这句是我改过的，不知有没有问题
-        zeroGradientFvPatchScalarField::typeName);
-volScalarField fsensh(fsens);//目标函数灵敏度，对xh的导数
+            IOobject::AUTO_WRITE
+            ),
+        -gradD&&(rho*(3*xh*xh*(E-Emin)/(2.0*(1.0 + Po))*twoSymm(gradD))),////////////////////////////////////////////////////////////////////这句是我改过的，不知有没有问题
+        zeroGradientFvPatchScalarField::typeName
+        );
+        volScalarField fsensh(fsens); //目标函数灵敏度，对xh的导数
 
 volScalarField gsens          //约束函数灵敏度，对x的导数                              
 (

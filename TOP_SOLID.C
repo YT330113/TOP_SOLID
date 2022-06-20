@@ -33,15 +33,16 @@ Description
 
 #include "fvCFD.H"
 #include "simpleControl.H"                      // 下面的 creatControl.H 所需
+#include "MMASolver.h"
+#include <iostream>
+#include <cmath>
+#include "mathHelp.cpp"
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //     
 int main(int argc, char *argv[])
 {
     Info << "********Topology optimization of linear elasticity problem.********"  <<nl;
 
-    #include "setRootCase.H"
-    #include "createTime.H"
     #include "setRootCase.H"
     #include "createTime.H"
     #include "createMesh.H"

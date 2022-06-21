@@ -24,7 +24,7 @@ for (i = 0; i < n; i++)
 	mma->Update(xmma,df,g,dg,xmin,xmax);
 
 	// Compute infnorm on design change
-	double ch = 0.0;l;
+	double ch = 0.0;
 	for (int i=0;i<n;i++) {
 		ch = Max(ch,Abs(xmma[i]-xold[i]));
 		xold[i] = xmma[i];

@@ -7,6 +7,7 @@ Info<< "Clear output files of last solve \n" << endl;
 std::remove("Voluse.txt");
 std::remove("Time.txt");
 std::remove("Compliance.txt");
+std::remove("Change.txt");
 
 int i = 0, opt = 0;                     // opt用于优化过程参数的放松，在"update.H"里opt++,这里先进行初始化
 double del = 0;                       // del就是heviside过滤里的惩罚强度参数betta

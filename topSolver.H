@@ -24,7 +24,7 @@ for (i = 0; i < n; i++)
 	mma->Update(xmma,df,g,dg,xmin,xmax);
 
 	// Compute infnorm on design change
-	double ch = 0.0;
+	double ch = 0.0;l;
 	for (int i=0;i<n;i++) {
 		ch = Max(ch,Abs(xmma[i]-xold[i]));
 		xold[i] = xmma[i];
@@ -33,6 +33,14 @@ for (i = 0; i < n; i++)
 
 	// Print to screen
 	std::cout << "\n设计变量的最大变化量:  "<< ch << std::endl;
+
+	// Print to file
+  if (Pstream::master())
+{
+    ofstream outfile4("Change.txt", std::ios::app);
+    outfile4 << ch << "\n";
+    outfile4.close();
+}
 //-------------------------------------------------------------------------------------------------------------------------//
 
 

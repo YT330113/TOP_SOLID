@@ -10,8 +10,8 @@ gradD = fvc::grad(D);
 sigmaD = mu * twoSymm(gradD) + (lambda * I) * tr(gradD);
 volScalarField Energy(0.25 * (gradD + gradD.T()) && sigmaD);
 
-C = fvc::domainIntegrate(Energy).value();
-V = fvc::domainIntegrate(xh).value() / area - voluse;//因为area和voluse都是无量刚标量
+C = fvc::domainIntegrate(Energy).value();//f(x)
+V = fvc::domainIntegrate(xh).value() / area - voluse; // g(x)<=0;     area和voluse都是无量刚标量
 //-----------------------------------------------------------------------------------------------------------//
 
 /****************************输出每一迭代步的目标函数值*********************/

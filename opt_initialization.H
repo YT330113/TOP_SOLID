@@ -21,7 +21,8 @@ scalar eta0, eta5, eta1, y0, y5;//eta5就是heviside过滤的截断值eta_h，�
 
 double C(0), V(0), area = gSum(mesh.V());                            //定义了柔度C，体积V，area是单元体积和，gSum() sums over all the processors in a parallel run
 double len = std::pow(area / n_dof, 1.0 / 3);                            // 这个len计算出所有单元的平均尺寸
-b.value() = 1.0 / (filterR * len / 3.464) / (filterR * len / 3.464); // b就是PDE求导数中的1/( r^2 ),r=filterR/(2*3^1/3) in paper,3.464=2*3^1/3
+Info << "\n网格的平均尺寸为：" << len << endl;
+b.value() = 1.0 / (coff_PDE * len) / (coff_PDE * len); // b就是PDE求导数中的1/( r^2 ),coff_PDE * len=r,r为coff_PDE倍的单元长度;
 
 /*****************************MMA相关*******************************************/
 

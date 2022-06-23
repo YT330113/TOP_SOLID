@@ -19,7 +19,7 @@ IOdictionary optProperties                      //创建字典，用于输入输
 );
 scalar voluse(readScalar(optProperties.lookup("voluse")));      // 体积约束
 Switch solid_area(optProperties.lookup("solid_area"));              //bool型变量，判断是否存在不可设计域
-scalar filterR(readScalar(optProperties.lookup("filterR")));
+scalar coff_PDE(readScalar(optProperties.lookup("coff_PDE")));//用于PDE过滤，coff_PDE * len=r,r为coff_PDE倍的单元长度;coff_PDE可取1.0-2.0
 dimensionedScalar b("b", dimensionSet(0, -2, 0, 0, 0, 0, 0), 1);// b就是PDE求导数中的1/( r^2 ),后续会定义具体值  
 
 //-------------------------------------------------------------------------------//
